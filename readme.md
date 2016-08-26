@@ -5,110 +5,67 @@ Location: SF
 
 ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)
 
+
+***** READ ME *****
+Below is the pseudo code outline of the car race game. Still need more details under the "Development Stories" section.
+
+
 #Training: Model a Game with OOP
 
-You've learned about OOP, but let's look at how to **incorporate ojbect oriented programming patterns into a web site**.  This document has an example of how we might approach making a card-matching memory game.
+
+You've learned about OOP, but let's look at how to **incorporate ojbect oriented programming patterns into a web site**.  This document has an example of how we might approach making a car race game.
 
 ### User Stories & Game Mechanics
-1. A user can see a set of face-down cards.
-2. A user can select a card to "flip it over" and see its other side.
-3. If the user flips two matching cards face-up at the same time, the cards will be removed from the game.
-4. If the user flips two non-matching cards face-up at the same time, both cards will turn back face down.
-5. The user wins when they've matched all the cards!
+1. User 1 controls Car 1
+2. User 2 controls Car 2
+3. Users control speed of cars using keyboard 
+4. Users control direction of cars using keyboard
+5. First user to cross finish line wins
 
-### Check for Understanding
 
-What are some data structures we might use when building a Memory game?
+### Data Structures for "Car Race" (Independent Practice)
 
-<details><summary>click to see examples</summary>
-  Did you think of making a `Card` object type? A `Game`?
-</details>
+Work with a partner to list some properties and methods of car and the game itself.
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-### Data Structures for "Memory" (Independent Practice)
-Let's consider object types Card, Game, and Pair.
-
-Work with a partner to list some properties and methods of cards, the game itself, and a particular pair.
-
-* List the type of each property (number, boolean, `Card`, etc.).
+* List the type of each property (number, boolean, `Car`, etc.).
 * List the parameters that each method will take.
 * Don't forget a constructor!
 
-**Card**
-<details><summary>click for examples properties</summary>
-  - `faceImage` (string)
-  - `isFaceUp` (boolean)
-  - `isMatched` (boolean)
-  - `flipOver()` (Function - change whether the card is currently face up)
-  - `Card(options)` (Function - constructor, create a card based on options like whether it should be a random image or what the image should be)
-</details>
-
-**Pair**
-<details><summary>click for examples for Pair</summary>
-  - `card1` (Card)
-  - `card2` (Card)
-  - `addCard(someCard)` (Function - add a specific card to the pair)
-  - `isMatch()` (Function - check if this pair is a match)
-  - `Pair()` (Function - constructor, create an empty pair)
-</details>
+**Cars**
+  - `CarImage` (string)
+  - `winsRace` (boolean)
+  - `movesForward()` (Function - move car forward)
+  - `movesBackward()` (Function - move car backward)
+  - `Car(options)` (Function - constructor, create a car based on options like what the image should be)
 
 **Game**
-<details><summary>click for examples for Game</summary>
-  - `current_guess` (Pair)
-  - `cards` ([Card])
-  - `reset()` (Function - resets the game!)
-  - `randomize()` (Function - creates randomized game)
-  - `Game(numCards)` (Function - constructor)
-  - `removeCard(card)` (Function - remove this card from the game)
+  - `cars` ([Cars])
+  - `move forward` (Function)
+  - `move backward` (Function)
   - `hasWon()` (Function - check if the game has been won!)
-  - `celebrate()` (Function - display a win message)
-</details>
+  - `start()` (Function - starts the game)
+  - `reset()` (Function - resets the game)
+
+
 
 ### Development Stories
 
-1. A user can see a set of face-down cards.
-  * Create HTML structure to display cards on screen (Handlebars?).
-  * Ensure that cards start out displayed face-down (in `Card` constructor?).
+1. A user can see a track and 2 cars.
+  * Create HTML structure to display cars and track on screen (Handlebars?).
+  * Ensure that cards start out in start position  (in `Card` constructor?).
 
-2. A user can select a card to "flip it over" and see its other side.
-  * Add click event listener to cards that:
-     - shows the other side of the card (`flipOver`)
-     - creates or updates a pair (don't add same card twice though!)
-     - checks if the cards in the pair match (`isMatch`)
-     - continues according to result (see 3 and 4, below)
+2. Either user can select START to begin countdown clock (3-2-1-GO)
 
-3. If the user flips two matching cards face-up at the same time, the cards will be removed from the game.
-  * Assuming `isMatch()` gave true for the current pair:
-    - set a short timer so the user can see that the cards matched (`setTimeout`), then...
-    - replace each card in the pair with a "blank space" image to let user know it's been removed
-    - use `off` to take off the click event listener from both cards
-    - remove both cards from the game's list of cards
 
-4. If the user flips two non-matching cards face-up at the same time, both cards will turn back face down.
-  * Assuming `isMatch()` gave false for the current pair:
-    - set a short timer so the user can see the cards (`setTimeout`), then...
-    - flip each card in the pair back over so they're face-down
+3. Once game starts, both players can use keyboard to advance cars forward and backward.
 
-5. The user wins when they've matched all the cards!
-  * Every time there is a match, the Game should also check if its cards array is now empty. (`hasWon`)
-  * If so, show a win screen (`celebrate`)
+5. First car to reach finish line wins.
 
 
 ###Potential Challenges / Development Questions
 
-1. How to randomize or shuffle card locations at the beginning of the game?
-2. How to ensure that all the cards have matches?
-3. How to change the image for a card that's face-down, face-up, or matched and removed from game?
-4. Is there a way to hide the identity of a card even from users who know how to use the Chrome dev tools?
-5. Cool card flip animation?!
+1. How to play victory song for winner
+
 
 ### Deliverable
 
